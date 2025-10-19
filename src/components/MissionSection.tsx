@@ -219,12 +219,12 @@ export const MissionSection = () => {
               </Button>
 
               {/* Testimonial */}
-              <div className="mt-12 glass-strong rounded-2xl p-8 max-w-3xl mx-auto border border-white/20">
-                <p className="text-white text-lg italic mb-4 leading-relaxed">
+              <div className="mt-12 bg-white rounded-2xl p-8 max-w-3xl mx-auto shadow-glow-strong">
+                <p className="text-foreground text-lg italic mb-4 leading-relaxed font-medium">
                   "Start'HEC nous a livré une étude de marché digne d'un grand cabinet de conseil, avec la
                   réactivité et l'engagement d'une équipe passionnée."
                 </p>
-                <p className="text-white/90 font-medium">- Alexandre D., Fondateur d'une Startup Seed</p>
+                <p className="text-foreground font-bold">- Alexandre D., Fondateur d'une Startup Seed</p>
               </div>
             </div>
           </motion.div>

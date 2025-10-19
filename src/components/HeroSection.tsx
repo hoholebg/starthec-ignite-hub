@@ -41,7 +41,7 @@ export const HeroSection = () => {
               Transformez vos idées en{" "}
               <span className="relative inline-block">
                 <span className="absolute inset-0 bg-gradient-accent blur-2xl opacity-50" />
-                <span className="relative text-transparent bg-clip-text bg-gradient-accent">
+                <span className="relative text-white drop-shadow-[0_0_30px_rgba(233,78,119,0.5)]">
                   succès entrepreneuriaux
                 </span>
               </span>

@@ -60,13 +60,17 @@ export const PolesSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl shadow-premium hover:shadow-glow transition-all duration-300"
+              whileHover={{ scale: 1.03, y: -8 }}
+              className="group relative overflow-hidden rounded-2xl shadow-premium hover:shadow-glow-strong transition-all duration-300 border border-transparent hover:border-gradient cursor-pointer"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${pole.color} opacity-10 group-hover:opacity-20 transition-opacity`} />
+              <div className={`absolute inset-0 bg-gradient-to-br ${pole.color} opacity-5 group-hover:opacity-15 transition-opacity`} />
               
               <div className="relative bg-card p-8">
-                <div className="w-14 h-14 rounded-xl gradient-premium flex items-center justify-center mb-6 shadow-glow group-hover:scale-110 transition-transform">
-                  <pole.icon className="w-7 h-7 text-white" />
+                <div className="relative w-16 h-16 mb-6">
+                  <div className="absolute inset-0 gradient-brand rounded-xl blur-lg opacity-50 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative w-16 h-16 rounded-xl gradient-brand flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform">
+                    <pole.icon className="w-8 h-8 text-white" />
+                  </div>
                 </div>
                 
                 <h3 className="text-2xl font-bold mb-4">{pole.title}</h3>

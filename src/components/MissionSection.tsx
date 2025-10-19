@@ -83,7 +83,8 @@ export const MissionSection = () => {
   return (
     <section id="mission" className="py-24 relative overflow-hidden" ref={ref}>
       {/* Premium Background */}
-      <div className="absolute inset-0 gradient-subtle" />
+      <div className="absolute inset-0 bg-background" />
+      <div className="absolute inset-0 gradient-mesh opacity-30" />
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Hero Header */}
@@ -97,11 +98,11 @@ export const MissionSection = () => {
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${missionImage})` }}
           />
-          <div className="absolute inset-0 gradient-hero opacity-95" />
+          <div className="absolute inset-0 gradient-brand opacity-95" />
           
           <div className="relative z-10 px-8 md:px-16 py-20 text-white">
-            <Badge className="mb-4 bg-secondary text-primary">Pôle Mission</Badge>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <Badge className="mb-6 gradient-accent text-white border-0 text-base px-4 py-2">Pôle Mission</Badge>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
               Donnez vie à votre projet entrepreneurial
             </h2>
             <p className="text-xl md:text-2xl max-w-4xl leading-relaxed text-white/90 font-light">
@@ -120,10 +121,14 @@ export const MissionSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-card rounded-2xl p-8 shadow-premium hover:shadow-glow transition-all duration-300 hover:-translate-y-2"
+              whileHover={{ scale: 1.03, y: -8 }}
+              className="group bg-card rounded-2xl p-8 shadow-premium hover:shadow-glow-strong transition-all duration-300 border border-transparent hover:border-gradient cursor-pointer"
             >
-              <div className="w-14 h-14 rounded-xl gradient-premium flex items-center justify-center mb-6 shadow-glow">
-                <value.icon className="w-7 h-7 text-white" />
+              <div className="relative w-16 h-16 mb-6">
+                <div className="absolute inset-0 gradient-brand rounded-xl blur-lg opacity-50 group-hover:opacity-100 transition-opacity" />
+                <div className="relative w-16 h-16 rounded-xl gradient-brand flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform">
+                  <value.icon className="w-8 h-8 text-white" />
+                </div>
               </div>
               <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
               <p className="text-muted-foreground leading-relaxed">{value.description}</p>
@@ -193,25 +198,34 @@ export const MissionSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="rounded-3xl gradient-premium p-12 text-center shadow-premium"
+            whileHover={{ scale: 1.02 }}
+            className="relative rounded-3xl gradient-brand p-12 text-center shadow-glow-strong overflow-hidden"
           >
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Votre projet mérite notre expertise
-            </h3>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Contactez-nous pour discuter de vos besoins et obtenir un devis gratuit
-            </p>
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-glow text-lg px-8">
-              Demander un devis gratuit
-            </Button>
-
-            {/* Testimonial */}
-            <div className="mt-12 bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-3xl mx-auto">
-              <p className="text-white text-lg italic mb-4 leading-relaxed">
-                "Start'HEC nous a livré une étude de marché digne d'un grand cabinet de conseil, avec la
-                réactivité et l'engagement d'une équipe passionnée."
+            {/* Animated Background */}
+            <div className="absolute inset-0 bg-animated opacity-20" />
+            
+            <div className="relative z-10">
+              <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                Votre projet mérite notre expertise
+              </h3>
+              <p className="text-xl md:text-2xl text-white/95 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                Contactez-nous pour discuter de vos besoins et obtenir un devis gratuit
               </p>
-              <p className="text-white/80 font-medium">- Alexandre D., Fondateur d'une Startup Seed</p>
+              <Button 
+                size="lg" 
+                className="bg-white text-primary hover:scale-105 hover:shadow-glow-strong shadow-glow text-lg px-10 py-7 font-semibold transition-all"
+              >
+                Demander un devis gratuit
+              </Button>
+
+              {/* Testimonial */}
+              <div className="mt-12 glass-strong rounded-2xl p-8 max-w-3xl mx-auto border border-white/20">
+                <p className="text-white text-lg italic mb-4 leading-relaxed">
+                  "Start'HEC nous a livré une étude de marché digne d'un grand cabinet de conseil, avec la
+                  réactivité et l'engagement d'une équipe passionnée."
+                </p>
+                <p className="text-white/90 font-medium">- Alexandre D., Fondateur d'une Startup Seed</p>
+              </div>
             </div>
           </motion.div>
         </motion.div>

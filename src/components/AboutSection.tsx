@@ -24,8 +24,9 @@ export const AboutSection = () => {
   return (
     <section id="about" className="py-24 bg-background relative overflow-hidden">
       {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+      <div className="absolute inset-0 gradient-mesh opacity-50" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-purple/10 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-magenta/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={ref}>
         {/* Header */}
@@ -53,11 +54,15 @@ export const AboutSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-card rounded-2xl p-6 shadow-premium hover:shadow-glow transition-all duration-300 hover:-translate-y-2"
+              whileHover={{ scale: 1.05, y: -8 }}
+              className="group bg-card rounded-2xl p-8 shadow-premium hover:shadow-glow-strong transition-all duration-300 border border-transparent hover:border-gradient cursor-pointer"
             >
-              <stat.icon className="w-8 h-8 text-primary mb-4" />
-              <div className="text-3xl font-bold text-primary mb-2">{stat.number}</div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
+              <div className="relative w-12 h-12 mb-6">
+                <div className="absolute inset-0 bg-gradient-premium blur-lg opacity-50 group-hover:opacity-100 transition-opacity" />
+                <stat.icon className="relative w-12 h-12 text-primary" />
+              </div>
+              <div className="text-4xl font-bold gradient-text mb-3">{stat.number}</div>
+              <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
             </motion.div>
           ))}
         </div>
@@ -79,12 +84,15 @@ export const AboutSection = () => {
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                 className="relative"
               >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 rounded-full gradient-premium flex items-center justify-center text-white font-bold text-xl mb-4 shadow-glow">
-                    {item.year}
+                <div className="flex flex-col items-center text-center group">
+                  <div className="relative w-20 h-20 mb-6">
+                    <div className="absolute inset-0 gradient-brand rounded-full blur-xl opacity-50 group-hover:opacity-100 transition-opacity" />
+                    <div className="relative w-20 h-20 rounded-full gradient-brand flex items-center justify-center text-white font-bold text-xl shadow-glow-strong group-hover:scale-110 transition-transform">
+                      {item.year}
+                    </div>
                   </div>
-                  <h4 className="font-semibold text-lg mb-2">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                  <h4 className="font-semibold text-xl mb-3 group-hover:text-primary transition-colors">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>
                 {index < timeline.length - 1 && (
                   <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-primary to-secondary" />

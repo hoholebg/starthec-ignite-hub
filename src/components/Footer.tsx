@@ -33,10 +33,14 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="bg-primary text-white pt-16 pb-8">
-      <div className="container mx-auto px-4 lg:px-8">
+    <footer className="relative bg-primary text-white pt-16 pb-8 overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-animated opacity-80" />
+      <div className="absolute inset-0 gradient-mesh opacity-30" />
+      
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Newsletter Section */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 mb-16">
+        <div className="glass-strong bg-white/10 rounded-3xl p-8 md:p-12 mb-16 border border-white/20 shadow-glow-strong">
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">Restez informé</h3>
             <p className="text-white/80 mb-6">
@@ -48,7 +52,7 @@ export const Footer = () => {
                 placeholder="Votre email"
                 className="bg-white text-primary border-0 flex-1"
               />
-              <Button className="bg-secondary text-primary hover:bg-secondary/90 shadow-glow">
+              <Button className="gradient-accent hover:scale-105 shadow-glow-strong transition-all font-semibold">
                 S'abonner
               </Button>
             </div>
@@ -58,8 +62,11 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Logo & Description */}
           <div className="lg:col-span-2">
-            <img src={logo} alt="Start'HEC" className="h-16 mb-6" />
-            <p className="text-white/80 mb-6 leading-relaxed">
+            <div className="relative inline-block mb-6">
+              <div className="absolute inset-0 bg-gradient-brand rounded-xl blur-xl opacity-50" />
+              <img src={logo} alt="Start'HEC" className="relative h-20 w-auto" />
+            </div>
+            <p className="text-white/90 mb-6 leading-relaxed text-lg">
               La première association d'entrepreneuriat étudiante d'Europe. Nous accompagnons les
               entrepreneurs HEC dans la réalisation de leurs ambitions.
             </p>

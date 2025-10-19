@@ -36,15 +36,26 @@ export const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass shadow-premium py-2" : "bg-transparent py-4"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? "glass-strong shadow-premium py-3" : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#hero" onClick={(e) => scrollToSection(e, "#hero")} className="flex items-center gap-2">
-            <img src={logo} alt="Start'HEC Logo" className="h-12 w-auto" />
+          <a 
+            href="#hero" 
+            onClick={(e) => scrollToSection(e, "#hero")} 
+            className="flex items-center gap-3 group"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-brand rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
+              <img 
+                src={logo} 
+                alt="Start'HEC Logo" 
+                className="relative h-14 w-auto transition-transform group-hover:scale-105" 
+              />
+            </div>
           </a>
 
           {/* Desktop Navigation */}
@@ -64,7 +75,11 @@ export const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:flex">
-            <Button variant="default" size="lg" className="shadow-glow">
+            <Button 
+              variant="default" 
+              size="lg" 
+              className="gradient-premium shadow-glow-strong hover:scale-105 transition-transform font-semibold"
+            >
               Postuler
             </Button>
           </div>

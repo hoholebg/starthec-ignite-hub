@@ -15,10 +15,18 @@ export const HeroSection = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center scale-105"
           style={{ backgroundImage: `url(${heroBackground})` }}
         />
-        <div className="absolute inset-0 gradient-hero opacity-90" />
+        <div className="absolute inset-0 bg-animated opacity-95" />
+        <div className="absolute inset-0 gradient-mesh" />
+      </div>
+      
+      {/* Floating Orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-brand-magenta/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-red/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-brand-purple/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "4s" }} />
       </div>
 
       {/* Content */}
@@ -29,9 +37,14 @@ export const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
               Transformez vos idées en{" "}
-              <span className="text-secondary">succès entrepreneuriaux</span>
+              <span className="relative inline-block">
+                <span className="absolute inset-0 bg-gradient-accent blur-2xl opacity-50" />
+                <span className="relative text-transparent bg-clip-text bg-gradient-accent">
+                  succès entrepreneuriaux
+                </span>
+              </span>
             </h1>
           </motion.div>
 
@@ -52,15 +65,14 @@ export const HeroSection = () => {
           >
             <Button
               size="lg"
-              className="bg-white text-primary hover:bg-white/90 shadow-glow text-lg px-8 py-6"
+              className="bg-white text-primary hover:scale-105 hover:shadow-glow-strong shadow-glow text-lg px-10 py-7 font-semibold transition-all"
             >
               Découvrir nos missions
-              <ArrowRight className="ml-2" />
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white/10 text-lg px-8 py-6"
+              className="glass border-2 border-white/30 text-white hover:bg-white/20 hover:scale-105 text-lg px-10 py-7 font-semibold transition-all"
             >
               Nous rejoindre
             </Button>
@@ -79,11 +91,15 @@ export const HeroSection = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                className="glass rounded-2xl p-6 backdrop-blur-xl border border-white/20 hover:border-secondary/50 transition-all"
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="glass-strong rounded-2xl p-8 backdrop-blur-xl border border-white/30 hover:border-gradient hover-lift group cursor-pointer"
               >
-                <stat.icon className="w-10 h-10 text-secondary mx-auto mb-3" />
-                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-sm text-white/80">{stat.label}</div>
+                <div className="relative mb-4">
+                  <div className="absolute inset-0 bg-gradient-accent blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+                  <stat.icon className="relative w-12 h-12 text-white mx-auto drop-shadow-lg" />
+                </div>
+                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">{stat.value}</div>
+                <div className="text-sm text-white/90 font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>

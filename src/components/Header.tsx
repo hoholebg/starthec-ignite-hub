@@ -17,17 +17,22 @@ export const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: "Accueil", href: "#hero" },
-    { name: "À propos", href: "#about" },
-    { name: "Pôles", href: "#poles" },
-    { name: "Événements", href: "#events" },
-    { name: "Équipe", href: "#team" },
-    { name: "Ressources", href: "#resources" },
+    { name: "À propos", href: "#about", isRoute: false },
+    { name: "Pôle Mission", href: "#mission", isRoute: false },
+    { name: "Nos Pôles", href: "#poles", isRoute: false },
+    { name: "Événements", href: "/events", isRoute: true },
+    { name: "Équipe", href: "/team", isRoute: true },
+    { name: "Ressources", href: "/resources", isRoute: true },
   ];
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: typeof navLinks[0]) => {
+    if (link.isRoute) {
+      setIsMobileMenuOpen(false);
+      return;
+    }
+    
     e.preventDefault();
-    const element = document.querySelector(href);
+    const element = document.querySelector(link.href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
@@ -61,15 +66,26 @@ export const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => scrollToSection(e, link.href)}
-                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative group"
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-              </a>
+              link.isRoute ? (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative group"
+                >
+                  {link.name}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                </Link>
+              ) : (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link)}
+                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative group"
+                >
+                  {link.name}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                </a>
+              )
             ))}
           </nav>
 
@@ -99,14 +115,25 @@ export const Header = () => {
           <div className="lg:hidden mt-4 pb-4 glass rounded-lg animate-fade-in">
             <nav className="flex flex-col gap-4 p-4">
               {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href)}
-                  className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2"
-                >
-                  {link.name}
-                </a>
+                link.isRoute ? (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2"
+                  >
+                    {link.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link)}
+                    className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2"
+                  >
+                    {link.name}
+                  </a>
+                )
               ))}
               <Button variant="default" size="lg" className="mt-2 w-full">
                 Postuler
